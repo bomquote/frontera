@@ -2,7 +2,7 @@
 from __future__ import absolute_import
 
 from frontera.core.components import Partitioner
-from cityhash import CityHash64
+from xxhash import xxh64
 from frontera.utils.misc import get_crc32
 
 
@@ -26,7 +26,7 @@ class FingerprintPartitioner(Partitioner):
     def partition(self, key, partitions=None):
         if not partitions:
             partitions = self.partitions
-        value = CityHash64(key)
+        value = xxh64(key)
         idx = value % len(partitions)
         return partitions[idx]
 

@@ -1,7 +1,7 @@
 """
 Graph manager reading data from database
 """
-from frontera import graphs
+from frontera.utils import graphs
 
 if __name__ == '__main__':
     # Create graph with sqlite db
@@ -9,5 +9,5 @@ if __name__ == '__main__':
 
     # Show graph pages
     for page in graph.pages:
-        print page
+        print(page)
 

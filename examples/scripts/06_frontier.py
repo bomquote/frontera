@@ -1,19 +1,19 @@
 """
 Frontier from parameters example
 """
-from frontera import FrontierManager, graphs, Request, Response
+from frontera.utils import graphs
+from frontera.core.manager import LocalFrontierManager
+from frontera import Request, Response
 
 if __name__ == '__main__':
     # Create graph
     graph = graphs.Manager('sqlite:///data/graph.db')
 
     # Create frontier
-    frontier = FrontierManager(
+    frontier = LocalFrontierManager(
         request_model='frontera.core.models.Request',
         response_model='frontera.core.models.Response',
         backend='frontera.contrib.backends.memory.FIFO',
-        logger='frontera.logger.FrontierLogger',
-        event_log_manager='frontera.logger.events.EventLogManager',
         middlewares=[
             'frontera.contrib.middlewares.domain.DomainMiddleware',
             'frontera.contrib.middlewares.fingerprint.UrlFingerprintMiddleware',

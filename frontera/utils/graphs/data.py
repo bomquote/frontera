@@ -1,4 +1,3 @@
-from __future__ import absolute_import
 from six.moves import range
 
 
@@ -57,7 +56,6 @@ class CrawlSiteListData(object):
 
     def __len__(self):
         return sum([len(site) for site in self.sites])
-
 
 #-----------------------------------------------------
 # Sites

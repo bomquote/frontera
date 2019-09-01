@@ -1,5 +1,3 @@
-from __future__ import absolute_import
-from __future__ import print_function
 import heapq
 import math
 from io import StringIO
@@ -27,7 +25,7 @@ def show_tree(tree, total_width=80, fill=' '):
     return
 
 
-class HeapObjectWrapper(object):
+class HeapObjectWrapper:
     def __init__(self, obj, compare_function):
         self.obj = obj
         self.compare_function = compare_function

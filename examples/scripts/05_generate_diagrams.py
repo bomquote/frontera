@@ -1,7 +1,7 @@
 """
 Graph diagram generation example
 """
-from frontera import graphs
+from frontera.utils import graphs
 
 SITE_LIST_A = [
     [
@@ -24,10 +24,11 @@ SITE_LIST_B = [
 
 
 def generate_graph(site_list, filename, title, use_urls=False):
-    print 'Generating diagram "%s"...' % title
+    print('Generating diagram "%s"...' % title)
     graph = graphs.Manager()
     graph.add_site_list(site_list)
     graph.render(filename=filename, label=title, use_urls=use_urls)
+
 
 if __name__ == '__main__':
     generate_graph(SITE_LIST_A, 'diagrams/A.png', 'Example Graph A')
