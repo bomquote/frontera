@@ -27,7 +27,7 @@ class FingerprintPartitioner(Partitioner):
         if not partitions:
             partitions = self.partitions
         value = xxh64(key)
-        idx = value % len(partitions)
+        idx = value.intdigest() % len(partitions)
         return partitions[idx]
 
     def __call__(self, key, all_partitions, available):

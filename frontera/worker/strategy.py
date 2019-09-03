@@ -7,7 +7,7 @@ from binascii import hexlify
 from logging.config import fileConfig
 from os.path import exists
 from random import randint
-from signal import signal, SIGUSR1
+from signal import signal, SIGTERM
 from time import asctime
 from traceback import format_stack, format_tb
 from collections import defaultdict
@@ -218,6 +218,7 @@ class BaseStrategyWorker(object):
                 response = obj.get()
                 fh = StreamingBodyIOBase(response['Body'])
             elif parsed.scheme == "file":
+                print(f'parsed.path -> {parsed.path}')
                 fh = open(parsed.path, "rb")
             else:
                 raise TypeError("Unsupported URL scheme")
@@ -253,7 +254,7 @@ class BaseStrategyWorker(object):
             logger.critical(str("").join(format_stack(frame)))
 
         install_shutdown_handlers(self._handle_shutdown)
-        signal(SIGUSR1, debug)
+        signal(SIGTERM, debug)
         if self.add_seeds_mode:
             self.add_seeds(seeds_url)
             d = self.stop_tasks()

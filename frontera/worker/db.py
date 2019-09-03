@@ -5,7 +5,7 @@ import os
 import logging
 import threading
 from traceback import format_stack
-from signal import signal, SIGUSR1
+from signal import signal
 from collections import defaultdict
 from argparse import ArgumentParser
 from logging.config import fileConfig
@@ -126,7 +126,7 @@ class BaseDBWorker(object):
         self.slot.schedule()
         self._logging_task.start(LOGGING_TASK_INTERVAL)
         install_shutdown_handlers(self._handle_shutdown)
-        signal(SIGUSR1, debug)
+        signal(10, debug)
         reactor.run(installSignalHandlers=False)
 
     # Auxiliary methods

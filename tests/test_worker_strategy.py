@@ -28,8 +28,8 @@ class TestStrategyWorker(TestCase):
         self.sw = StrategyWorker(settings, False)
 
     def tearDown(self):
-        if exists("/tmp/test_urls.txt"):
-            remove("/tmp/test_urls.txt")
+        if exists("C:/temp/test_urls.txt"):
+            remove("C:/temp/test_urls.txt")
         pass
 
     def sw_setup_filtered_links(self):
@@ -50,12 +50,12 @@ class TestStrategyWorker(TestCase):
 
     def test_add_seeds(self):
         sw = self.sw_setup_add_seeds()
-        fh = open("/tmp/test_urls.txt", "wb")
+        fh = open(r"C:/temp/test_urls.txt", "wb")
         fh.write(b"http://example1.com/\n")
         fh.write(b"http://www.scrapy.org/\n")
         fh.close()
 
-        sw.run("file:///tmp/test_urls.txt")
+        sw.run(r"file://C:/temp/test_urls.txt")
 
         assert sw.add_seeds_mode == True
         produced = [sw._decoder.decode(msg) for msg in sw.update_score._producer.messages]
